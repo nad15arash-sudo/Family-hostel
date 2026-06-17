@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard | Family Hostel Bali</title>
+    <meta name="description" content="Check the weather in Lovina Beach, Bali and other locations">
+    <link rel="stylesheet" href="weather-style.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="logo-text">🏝 Family Hostel</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#rooms">Rooms</a>
+        <a href="index.html#tours">Tours</a>
+        <a href="weather.html" class="active">Weather</a>
+    </nav>
+    <a class="btn" href="https://wa.me/6287780052590">
+        Book Now
+    </a>
+</header>
+
+<section class="weather-container">
+    <div class="search-section">
+        <h1>🌤️ Bali Weather Dashboard</h1>
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="cityInput" 
+                placeholder="Search for a city..."
+                value="Lovina"
+            >
+            <button id="searchBtn">Search</button>
+        </div>
+        <div class="preset-cities">
+            <button class="preset-btn" data-city="Lovina">Lovina</button>
+            <button class="preset-btn" data-city="Bali">Bali</button>
+            <button class="preset-btn" data-city="Ubud">Ubud</button>
+            <button class="preset-btn" data-city="Seminyak">Seminyak</button>
+            <button class="preset-btn" data-city="Kuta">Kuta</button>
+        </div>
+    </div>
+
+    <div class="weather-content">
+        <!-- Main Weather Card -->
+        <div class="main-weather-card">
+            <div id="loadingSpinner" class="spinner" style="display: none;">
+                <div class="spin"></div>
+            </div>
+            <div id="weatherContent" style="display: none;">
+                <div class="weather-header">
+                    <h2 id="cityName">Lovina, Indonesia</h2>
+                    <p id="currentTime" class="current-time"></p>
+                </div>
+
+                <div class="weather-main">
+                    <div class="temperature-section">
+                        <div class="weather-icon" id="weatherIcon">🌤️</div>
+                        <div class="temperature-display">
+                            <span id="temperature" class="temp">28°C</span>
+                            <span id="weatherDesc" class="description">Sunny</span>
+                        </div>
+                    </div>
+
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Feels Like</span>
+                            <span id="feelsLike" class="detail-value">28°C</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Humidity</span>
+                            <span id="humidity" class="detail-value">75%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Wind Speed</span>
+                            <span id="windSpeed" class="detail-value">12 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Pressure</span>
+                            <span id="pressure" class="detail-value">1013 mb</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-extra">
+                    <div class="extra-item">
+                        <span class="label">☀️ UV Index</span>
+                        <span id="uvIndex" class="value">6</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="label">👁️ Visibility</span>
+                        <span id="visibility" class="value">10 km</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="label">💧 Dew Point</span>
+                        <span id="dewPoint" class="value">23°C</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="label">🌅 Sunrise</span>
+                        <span id="sunrise" class="value">05:30</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="label">🌇 Sunset</span>
+                        <span id="sunset" class="value">18:15</span>
+                    </div>
+                </div>
+            </div>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </div>
+
+        <!-- Hourly Forecast -->
+        <div class="forecast-section">
+            <h3>⏱️ Hourly Forecast</h3>
+            <div class="hourly-forecast" id="hourlyForecast">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div class="forecast-section">
+            <h3>📅 5-Day Forecast</h3>
+            <div class="daily-forecast" id="dailyForecast">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="info-section">
+        <div class="info-card">
+            <h4>💡 Travel Tips</h4>
+            <ul id="travelTips">
+                <li>Pack sunscreen - UV index is high</li>
+                <li>Bring an umbrella for afternoon showers</li>
+                <li>Best time to visit beaches: 9 AM - 4 PM</li>
+                <li>Stay hydrated in the tropical heat</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h4>🌍 Climate Info</h4>
+            <p><strong>Season:</strong> <span id="season">Dry Season</span></p>
+            <p><strong>Best for Tours:</strong> <span id="bestForTours">Excellent conditions</span></p>
+            <p><strong>Water Temperature:</strong> <span id="waterTemp">28°C</span></p>
+            <p><strong>Recommendation:</strong> <span id="recommendation">Perfect for outdoor activities</span></p>
+        </div>
+    </div>
+</section>
+
+<section class="additional-info">
+    <h2>🏝️ Why Check Weather in Lovina?</h2>
+    <div class="info-grid">
+        <div class="info-item">
+            <h3>📍 Location Benefits</h3>
+            <p>Lovina Beach offers consistent tropical weather perfect for water sports and beach activities year-round.</p>
+        </div>
+        <div class="info-item">
+            <h3>🏖️ Best Activities</h3>
+            <p>Sunny days are ideal for sunset kayaking, fishing tours, and exploring waterfalls.</p>
+        </div>
+        <div class="info-item">
+            <h3>🌊 Water Conditions</h3>
+            <p>Check weather before booking water activities - calm seas are best from May to October.</p>
+        </div>
+        <div class="info-item">
+            <h3>📸 Photography</h3>
+            <p>Clear sunny days provide perfect lighting for beach photos and sunset captures.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h5>Family Hostel Bali</h5>
+            <p>Your home away from home in Bali</p>
+        </div>
+        <div class="footer-section">
+            <h5>Quick Links</h5>
+            <a href="index.html">Home</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="weather.html">Weather</a>
+        </div>
+        <div class="footer-section">
+            <h5>Data Source</h5>
+            <p>Weather data from Open-Meteo API (Free, No API Key Required)</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2024 Family Hostel Bali. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="weather.js"></script>
+</body>
+</html>
